@@ -1,0 +1,10 @@
+@identityServerUrl = https://localhost:5001
+@clientId = web-ui
+@clientSecret = secret
+@code = B6FC2A8431E250997308A9859218EFC1E036EDBF8ACB8C8271FF958B9F6779B4-1
+
+### Code Token Exchange
+POST {{identityServerUrl}}/connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code&client_id={{clientId}}&client_secret={{clientSecret}}&code={{code}}&redirect_uri=https://localhost:7163/signin-oidc

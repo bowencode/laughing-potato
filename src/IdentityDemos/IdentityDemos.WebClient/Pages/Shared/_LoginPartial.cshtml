@@ -1,0 +1,18 @@
+﻿@using System.Web
+
+<ul class="navbar-nav">
+@if (User.Identity?.IsAuthenticated == true)
+{
+        <span class="navbar-text text-dark">Hello @User.Identity?.Name</span>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Logout">Sign out</a>
+        </li>
+}
+else
+{
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Login" asp-route-returnUrl="@HttpUtility.UrlEncode(Context.Request.Path)">Sign in</a>
+        </li>
+}
+    <span class="navbar-text"> | Mode: @Program.AuthenticationMode</span>
+</ul>

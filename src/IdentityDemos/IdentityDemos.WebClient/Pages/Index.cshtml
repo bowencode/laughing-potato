@@ -1,0 +1,35 @@
+﻿@page
+@using System.Text.Json
+@using Microsoft.AspNetCore.Authentication
+@model IdentityDemos.WebClient.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <h2>Claims</h2>
+
+    <pre>@JsonSerializer.Serialize(User.Claims.ToDictionary(c => c.Type, c => c.Value), new JsonSerializerOptions { WriteIndented = true })</pre>
+
+    <h2>Properties</h2>
+
+    <dl>
+        @foreach (var prop in (await HttpContext.AuthenticateAsync()).Properties?.Items ?? new Dictionary<string, string?>())
+        {
+            <dt>@prop.Key</dt>
+            <dd>@prop.Value</dd>
+        }
+    </dl>
+
+    @if(Program.AuthenticationMode == AuthClientType.AuthCode)
+    {
+    <form method="post">
+        <button type="submit" class="btn btn-primary">Refresh Token</button>
+    </form>
+    }
+}
+else
+{
+    <h3>Not Logged In</h3>
+}

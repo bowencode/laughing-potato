@@ -1,0 +1,19 @@
+﻿@page
+@model IdentityDemos.WebClient.Pages.ClientCredsPoPModel
+@{
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <p>
+        <button type="submit" class="btn btn-primary">Get Token with DPoP</button>
+    </p>
+</form>
+
+<h5>Token Claims:</h5>
+<pre>@ViewData["Token"]</pre>
+
+<h5>API Response:</h5>
+<pre>@ViewData["ApiResponse"]</pre>

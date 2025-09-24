@@ -1,0 +1,21 @@
+﻿@page
+@model IdentityServer.Pages.Account.Mfa.IndexModel
+@{
+}
+
+<div class="lead">
+    <h1>MFA</h1>
+
+    @if (Model.View.MfaRequestedByClient)
+    {
+        <p>The @Model.View.ClientName application requires that you confirm your identity.</p>
+    }
+</div>
+
+<form asp-page="/Account/Mfa/Index">
+    <input type="hidden" asp-for="Input.ReturnUrl" />
+
+    <p>Are you @(User.Identity?.Name)?</p>
+    <button class="btn btn-primary" name="Input.Button" value="accept">Yes</button>
+    <button class="btn btn-warning" name="Input.Button" value="decline">No</button>
+</form>
